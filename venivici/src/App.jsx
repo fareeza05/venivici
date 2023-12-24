@@ -9,6 +9,8 @@ import ContentMain from './Components/ContentMain'
 function App() {
   const [content, setContent] = useState(null)
   const [information, setInformation] = useState([])
+  const [previous, setPrevious] = useState([]) 
+  const [banned, setBanned] = useState([])
 
   const fetchRandomContent = async () => {
     try {
@@ -17,16 +19,16 @@ function App() {
       const json = await response.json()
       setContent(json[0])
       console.log(content)
-      if(content.breeds[0] != null){
+      if(content.breeds && content.breeds.length > 0){
         setInformation(content.breeds)
         console.log(information)
       } else {
-        const defaultInfo = [{
-          "alt_names":"Name",
-          "life_span":"0-5",
-          "origin": "Country",
-          "weight": {"metric":"0-1"},
-          "name":"Breed"
+        let defaultInfo = [{
+          alt_names:"Name",
+          life_span:"0-5",
+          origin: "Country",
+          weight: {"metric":"0-1"},
+          name:"Breed"
 
         }]
         setInformation(defaultInfo)
@@ -38,15 +40,41 @@ function App() {
     }
   }
   
+  const setCatGallery = () => {
+    setPrevious((prevCats => [...prevCats, content]))
+    fetchRandomContent()
+  }
+
+  const banContent = () => {
+    
+  }
   
 
   return (
-    <div className='container'>
-      <ContentMain
-        content={content}
-        onSubmit={fetchRandomContent}
-        information={information}
-      />
+    <div className='main-content'>
+
+      <div className='prev-box'>
+        <Previous
+          information={previous}
+        />
+      </div>
+      
+      <div >
+        <ContentMain
+          content={content}
+          onSubmit={setCatGallery}
+          information={information}
+        />
+      </div>
+
+
+      <div className='ban-box'>
+        <Ban
+
+        />
+      </div>
+
+      
     </div>
    
   )

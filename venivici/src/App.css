@@ -40,3 +40,52 @@
 .read-the-docs {
   color: #888;
 }
+
+body{
+  background-color: beige;
+
+}
+
+
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width:1280px;
+
+
+  
+
+  
+}
+
+.fetch-button {
+  margin-top: 20px;
+  background-color: #FCE9D5;
+}
+
+.prev-box {
+  background-color: rgba(103,104,84, 0.5);
+  border-radius: 8px;
+  margin-left: 0px;
+  padding:10px;
+  justify-self: flex-start;
+  
+  
+}
+
+.main-box {
+  
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.ban-box {
+  background-color: rgba(103,104,84, 0.5);
+  border-radius: 8px;
+  padding:10px;
+}
